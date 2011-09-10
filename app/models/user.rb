@@ -19,16 +19,19 @@ class User < ActiveRecord::Base
   
   # Validations
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :nick,  :presence => true,
-                    :length    => { :within => 3..16 },
-                    :format    => { :with => /^[a-z0-9_-]+$/, :message => 'only acepts alphanumeric characters'  }
+  validates :nick,  :presence   => true,
+                    :length     => { :within => 3..16 },
+                    :format     => { :with => /^[a-zA-Z0-9_-]+$/, :message => 'only acepts alphanumeric characters' },
+                    :uniqueness => { :case_sensitive => false }
   validates :name,  :presence => true
-  validates :email, :presence => true,
-                    :length   => { :maximum => 50  },
-                    :format   => { :with => email_regex, :message => 'must be an email'  }
+  validates :email, :presence   => true,
+                    :length     => { :maximum => 50  },
+                    :format     => { :with => email_regex, :message => 'must be an email' },
+                    :uniqueness => { :case_sensitive => false }
   validates :password, :presence     => true,
                        :confirmation => true,
-                       :length       => { :within => 6..40 }
+                       :length       => { :within => 6..40 },
+                       :format       => { :with => /^[a-zA-Z0-9_-]+$/, :message => 'only acepts alphanumeric characteres' }
                
   # Callbacks        
   before_save :encrypt_password

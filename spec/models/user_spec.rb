@@ -41,7 +41,7 @@ describe User do
       end
       
       it "should acepts valid nicks" do
-        valid_nicks = %w[example ex-ample 16example example_16]
+        valid_nicks = %w[example ex-ample 16example example_16 Colombo]
         valid_nicks.each do |nick|
           User.new(@attr.merge(:nick => nick)).should be_valid
         end
@@ -99,6 +99,18 @@ describe User do
       it "should reject long passwords" do
         long = "a" * 41
         User.new(@attr.merge(:password => long, :password_confirmation => long)).should_not be_valid
+      end
+      
+      it "should reject invalid passwords" do
+        ['123 456', '?*hola', 'sad eqw1'].each do |invalid_password|
+          User.new(@attr.merge(:password => invalid_password, :pasword_confirmation => invalid_password)).should_not be_valid
+        end
+      end
+      
+      it "should acepts valids passwords" do
+        ['1234567', 'foobar', '30-flow', '25_foo', 'Afg-24'].each do |password|
+          User.new(@attr.merge(:password => password, :password_confirmation => password)).should be_valid
+        end
       end
     end
   end
@@ -162,6 +174,18 @@ describe User do
     
     it "should return the user on nick/password match" do
       User.authenticate(@attr[:nick], @attr[:password]).should == @user
+    end
+    
+    it "should be case insensitibe for mail" do
+      User.authenticate(@attr[:email].capitalize, @attr[:password]).should == @user
+    end
+    
+    it "should be case insensitive for nick" do
+      User.authenticate(@attr[:nick].capitalize, @attr[:password]).should == @user
+    end
+    
+    it "should be case sensitibe for password" do
+      User.authenticate(@attr[:nick], @attr[:password].capitalize).should be_nil
     end
   end
 end
