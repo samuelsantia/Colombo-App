@@ -13,7 +13,4 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path("../../Gemfile",
 require 'rubygems'
 require 'bundler/setup'
 
-require 'autotest/growl'
-require 'autotest/fsevent'
-
 load Gem.bin_path('ZenTest', 'autotest')

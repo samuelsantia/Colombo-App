@@ -1,0 +1,12 @@
+<%= form_for(:session, :url => sessions_path) do |f| %>
+	<%= f.label :identificator, "Nombre de usuario o contraseña" %>
+ 	<%= f.text_field :identificator %>
+	<%= f.label :password, "Contraseña" %>
+	<%= f.password_field :password %>
+	<%= f.submit "Entrar", :class => 'btn-grey-round' %>
+<% end %>
+
+<ul>
+	<li><%= link_to "¿No tienes cuenta aún?", registrarse_path, :title => "Regisgtrate" %></li>
+	<li><%= link_to "¿Olvido su contraseña?", "#", :title => "¿Olvido su contraseña?" %></li>
+</ul>

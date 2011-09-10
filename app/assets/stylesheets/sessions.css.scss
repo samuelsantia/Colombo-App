@@ -1,0 +1,51 @@
+@mixin rounded-bottom{
+  $border: 10px;
+  
+  -moz-border-radius: 0 0 $border $border;
+  border-radius: 0 0 $border $border;
+}
+/* header login form */
+header{
+  .login{
+    position: absolute; right: 0; top: -157px;
+    
+    a{
+      color: #ddd;
+      &:hover{color: #fff;}
+    }
+    
+    .login-button{
+      float:right; margin-top: -10px; border: 1px solid #545454; padding: 15px 10px 5px; background: #000; position: relative; z-index: 0;
+      @include rounded-bottom;
+      
+      span{font-size: 0.917em; float: left;}
+      i{float: right; margin: 4px 0 0 5px; width: 9px; height: 9px; background: url(images/icos/mini-arrows.gif) no-repeat 0 0;}
+      
+      &:hover{
+        i{background-position: 0 -18px;}
+      }
+      
+      &.active{
+        i{background-position: 0 -9px;}
+        &:hover{
+          i{background-position: 0 -27px;}
+        }
+      }
+    }
+    
+    .wrap{
+      border: 1px solid #545454; padding: 10px; background: #303030; position: relative; z-index: 1;
+      @include rounded-bottom;
+      
+      form{
+        overflow: hidden;
+        input{
+          &[type=text], &[type=password]{width: 190px;}
+        }
+        .btn-grey-round{float: right; margin: 3px 0;}
+      }
+      
+    }
+  }
+}
+/* end header login form */

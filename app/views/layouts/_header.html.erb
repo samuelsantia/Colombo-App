@@ -6,3 +6,13 @@
 		<li class="contact"><%= link_to 'Contacto', '#', :title => 'Contacto' %></li>
 	</ul>
 </nav>
+
+<div id="login-box" class="login c3">
+	<div class="wrap">
+		<%= render 'sessions/login_form' %>
+	</div>
+	<%= link_to login_path, :title => "Iniciar sesión", :class => "login-button", :id => "login-button" do %>
+		<span>Iniciar sesión</span>
+		<i></i>
+	<% end %>
+</div>
