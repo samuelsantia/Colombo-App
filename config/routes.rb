@@ -1,3 +1,7 @@
 ColomboApp::Application.routes.draw do
-  root :to => 'pages#home'
+  resources :users, :only => [:create]
+  
+  match '/registrarse', :to => 'users#new', :via => :get
+  
+  root :to => 'pages#home', :via => :get
 end

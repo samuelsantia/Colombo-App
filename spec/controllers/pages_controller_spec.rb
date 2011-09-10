@@ -13,6 +13,7 @@ describe PagesController do
       get 'home'
       response.should have_selector('title', :content => 'Colombo')
     end
+    
   end
 
 end
