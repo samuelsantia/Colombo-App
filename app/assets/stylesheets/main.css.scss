@@ -1,3 +1,9 @@
+@import "css3mixin";
+// SCSS global vars
+$total-width: 960px;
+$gutter-width: 10px;
+$grid-width: $total-width / 12 - ($gutter-width * 2);
+
 /* reset css */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code,
 del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
@@ -37,7 +43,8 @@ body{background: #000; font:0.75em/1.333em arial, sans-serif; color: #fff;}
 	/* forms  */
 	input{
 	  &[type=text], &[type=password]{
-	    border:1px solid #303030; padding: 3px; background: #545454; color: #fff; -moz-border-raidus: 3px; border-radius: 3px;
+	    border:1px solid #303030; padding: 3px; background: #545454; color: #fff;
+	    @include rounded(3px);
 	  
 	    &:focus{border-color: #545454; background: #303030;}
 	  }
@@ -46,33 +53,24 @@ body{background: #000; font:0.75em/1.333em arial, sans-serif; color: #fff;}
 /*end base css */
 
 /* grid */
-.container{
-  $total-width: 960px;
-  $gutter-width: 10px;
-  $grid-width: $total-width / 12 - ($gutter-width * 2);
-  
-  width: $total-width;
-  margin: 0 auto;
-  position: relative;
-  
-  .row{overflow: hidden; margin: 1.25em 0;}
-  
+.container{width: $total-width; margin: 0 auto; position: relative;}
+.row{overflow: hidden; margin: 1.25em 0;}
   .c1 .row, .c2 .row, .c3 .row, .c4 .row, .c5 .row, .c6 .row,
-	.c7 .row, .c8 .row, .c9 .row, .c10 .row, .c11 .row, .c12 .row{margin:0 -10px;}
+  .c7 .row, .c8 .row, .c9 .row, .c10 .row, .c11 .row, .c12 .row{margin:0 -10px;}
   .row-2-center{overflow: hidden; margin: 0 160px;}
-  
-  .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10, .c11, .c12{margin: 0 $gutter-width; float: left;}
+
+.c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10, .c11, .c12{margin: 0 $gutter-width; float: left;}
 	@for $i from 1 through 12{
 	  .c#{$i}{
 	    width: $i * $grid-width + ($i - 1) * $gutter-width * 2;
 	  }
 	}
-	.fix-m-l{margin-left: 0;}
-	.fix-m-r{margin-right: 0;}
+.fix-m-l{margin-left: 0;}
+.fix-m-r{margin-right: 0;}
 	
-	.sl1{margin: 0 10px 0 90px;}
-}
+.sl1{margin: 0 10px 0 90px;}  
 /* end grid */
+
 /* header */
 header{
   height:99px; border-bottom: 1px solid #545454;

@@ -1,9 +1,4 @@
-@mixin rounded-bottom{
-  $border: 10px;
-  
-  -moz-border-radius: 0 0 $border $border;
-  border-radius: 0 0 $border $border;
-}
+@import "css3mixin";
 /* header login form */
 header{
   .login{
@@ -16,7 +11,7 @@ header{
     
     .login-button{
       float:right; margin-top: -10px; border: 1px solid #545454; padding: 15px 10px 5px; background: #000; position: relative; z-index: 0;
-      @include rounded-bottom;
+      @include rounded(0 0 10px 10px);
       
       span{font-size: 0.917em; float: left;}
       i{float: right; margin: 4px 0 0 5px; width: 9px; height: 9px; background: url(images/icos/mini-arrows.gif) no-repeat 0 0;}
@@ -35,7 +30,7 @@ header{
     
     .wrap{
       border: 1px solid #545454; padding: 10px; background: #303030; position: relative; z-index: 1;
-      @include rounded-bottom;
+      @include rounded(0 0 10px 10px);
       
       form{
         overflow: hidden;

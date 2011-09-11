@@ -1,0 +1,4 @@
+@mixin rounded($border: 10px){
+  -moz-border-radius: $border;
+  border-radius: $border;
+}
