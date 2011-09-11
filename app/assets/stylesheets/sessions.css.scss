@@ -2,7 +2,7 @@
 /* header login form */
 header{
   .login{
-    position: absolute; right: 0; top: -157px;
+    position: absolute; right: 0; top: -161px;
     
     a{
       color: #ddd;
@@ -37,7 +37,7 @@ header{
         input{
           &[type=text], &[type=password]{width: 190px;}
         }
-        .btn-grey-round{float: right; margin: 3px 0;}
+        .btn-grey-round{float: right; margin: 5px 0;}
       }
       
     }

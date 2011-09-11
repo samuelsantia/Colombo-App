@@ -2,3 +2,11 @@
   -moz-border-radius: $border;
   border-radius: $border;
 }
+
+@mixin animated($props: all, $time: .5, $transition: ease-in-out){
+  -webkit-transition: $props $time $transition;
+	-moz-transition: $props $time $transition;
+	-o-transition: $props $time $transition;
+	-ms-transition: $props $time $transition;
+	transition: $props $time $transition;
+}

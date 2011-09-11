@@ -48,6 +48,9 @@ body{background: #000; font:0.75em/1.333em arial, sans-serif; color: #fff;}
 	  
 	    &:focus{border-color: #545454; background: #303030;}
 	  }
+	  &[type=submit]{
+	    cursor: pointer;
+	  }
 	}
   /* emd forms */
 /*end base css */
@@ -129,8 +132,10 @@ footer{
 
 /* misc */
 .btn-grey-round{
-  color: #ddd; background: #303030; border: 1px solid #545454; padding: 0 15px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+  color: #ddd; background: #303030; border: 1px solid #545454; padding: 0 15px;
+  @include rounded(3px);
   
   &:hover{color: #fff; background: #545454; border-color: #303030;}
+  &:focus{color: #fff; border-color: #ddd;}
 }
 /* end misc */
