@@ -3,6 +3,8 @@
  	<%= f.text_field :identificator %>
 	<%= f.label :password, "Contraseña" %>
 	<%= f.password_field :password %>
+	<%= f.check_box :remember_me %>
+	<%= f.label :remember_me, "Recordarme", :class => 'remember' %>
 	<%= f.submit "Iniciar sesión", :class => 'btn-grey-round' %>
 <% end %>
 

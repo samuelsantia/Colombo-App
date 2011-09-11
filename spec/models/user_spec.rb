@@ -188,4 +188,24 @@ describe User do
       User.authenticate(@attr[:nick], @attr[:password].capitalize).should be_nil
     end
   end
+  
+  describe "authenticate_with_salt method" do
+    
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+    
+    it "should return nil on invalid id" do
+      User.authenticate_with_salt(@user.id + 1, @user.salt).should be_nil
+    end
+    
+    it "should return nil on invalid salt" do
+      User.authenticate_with_salt(@user.id, "incorrect").should be_nil
+    end
+    
+    it "should return the user on id salt match" do
+      User.authenticate_with_salt(@user.id, @user.salt).should == @user
+    end
+  end
+  
 end

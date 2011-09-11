@@ -1,15 +1,18 @@
 @import "css3mixin";
 /* header login form */
 header{
-  .login{
-    position: absolute; right: 0; top: -161px;
+  .user{
+    position: absolute; right: 0;
+    
+    &.login{top: -161px;}
+    &.account{top: -74px;}
     
     a{
       color: #ddd;
       &:hover{color: #fff;}
     }
     
-    .login-button{
+    .user-button{
       float:right; margin-top: -10px; border: 1px solid #545454; padding: 15px 10px 5px; background: #000; position: relative; z-index: 0;
       @include rounded(0 0 10px 10px);
       
@@ -36,8 +39,13 @@ header{
         overflow: hidden;
         input{
           &[type=text], &[type=password]{width: 190px;}
+          &[type=checkbox]{margin-top: 7px;}
         }
         .btn-grey-round{float: right; margin: 5px 0;}
+      }
+      
+      .user-menu{
+        li{padding: 5px 0;}
       }
       
     }

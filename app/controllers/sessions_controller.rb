@@ -11,19 +11,23 @@ class SessionsController < ApplicationController
   # if user exist sign_in the user
   # if user doesn't exist or is bad combination re render login form and shown the error
   # @params session identificator
-  # @param session password
+  # @params session password
   def create
     user = User.authenticate(params[:session][:identificator], params[:session][:password])
     if user.nil?
-      @title = "Entrar"
+      @title = "Iniciar sesion"
       render "new"
     else
+      log_in user, params[:session][:remember_me].to_i
       redirect_to root_path
     end
   end
   
+  # DELETE /logout
+  # log_out a user and redirect to the root_path
   def destroy
-    
+    log_out
+    redirect_to root_path
   end
 
 end

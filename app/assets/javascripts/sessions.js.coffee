@@ -1,8 +1,8 @@
 # Login header box
 $ ->
   # Vars
-  $loginBox = $('#login-box')
-  $loginButton = $('#login-button')
+  $loginBox = $('#user-box')
+  $loginButton = $('#user-button')
   closed = true
   height = $loginBox.find('.wrap').outerHeight()
   
@@ -23,7 +23,7 @@ $ ->
     false
     
   clickWHandler = (ev) ->
-    if not closed and not ($(ev.target).parents('#login-box').length > 0)
+    if not closed and not ($(ev.target).parents('#user-box').length > 0)
       close()
   
   # Events

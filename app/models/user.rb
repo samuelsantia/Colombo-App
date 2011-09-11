@@ -51,6 +51,17 @@ class User < ActiveRecord::Base
     user && user.has_password?(submitted_password) ? user : nil
   end
   
+  # authenticate_with_salt
+  # Return the user if the id and the cookie_salt matches else return nil
+  # @param id => integer
+  # @param cookie_salt => string
+  # @return instance user or nil
+  #
+  def self.authenticate_with_salt(id, cookie_salt)
+    user = find_by_id(id)
+    user && user.salt == cookie_salt ? user : nil
+  end
+  
   # ------------------------------------------------------------------------------------------------------
   # Instance methods
   # ------------------------------------------------------------------------------------------------------

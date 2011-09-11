@@ -5,7 +5,7 @@ ColomboApp::Application.routes.draw do
   
   match '/registrarse', :to => 'users#new', :via => :get
   match '/login', :to => 'sessions#new', :via => :get
-  match '/logout', :to => 'sessions#destroy', :via => :delete
+  match '/logout', :to => 'sessions#destroy', :via => :get
   
   root :to => 'pages#home', :via => :get
 end
