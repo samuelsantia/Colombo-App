@@ -1,5 +1,6 @@
 <article class="c12 register-form">
 	<h1>Registarse</h1>
+	<%# TODO see client_side_validations gem to validate the form %>
 	<%= form_for @user, :class => 'row' do |f| %>
 		<ul>
 			<li class="row">
@@ -9,7 +10,7 @@
 				</div>
 				<div class="c6">
 					<%= f.label :email,'Email:', :class => 'c2 fix-m-l' %>
-					<%= f.text_field :email, :class => 'c3' %>
+					<%= f.email_field :email, :class => 'c3' %>
 				</div>
 			</li>
 			<li class="row">

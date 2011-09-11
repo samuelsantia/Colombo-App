@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path
     else
+      @title = 'Registrarse'
       render :action => 'new'
     end
   end

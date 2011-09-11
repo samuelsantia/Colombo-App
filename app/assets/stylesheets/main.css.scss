@@ -42,7 +42,7 @@ body{background: #000; font:0.75em/1.333em arial, sans-serif; color: #fff;}
 	
 	/* forms  */
 	input{
-	  &[type=text], &[type=password]{
+	  &[type=text], &[type=password], &[type=email]{
 	    border:1px solid #303030; padding: 3px; background: #545454; color: #fff;
 	    @include rounded(3px);
 	  
