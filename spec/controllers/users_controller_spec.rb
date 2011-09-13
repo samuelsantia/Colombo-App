@@ -22,7 +22,7 @@ describe UsersController do
     
     it "should have a email field" do
       get :new
-      response.should have_selector("input[name='user[email]'][type='text']")
+      response.should have_selector("input[name='user[email]'][type='email']")
     end
     
     it "should have a name field" do
@@ -64,6 +64,24 @@ describe UsersController do
           post :create, :user => @attr
         end.should_not change(User, :count)
       end      
+    end
+    
+    describe "Success" do
+      
+      before(:each) do
+        @attr = { :nick => "Colombo", :email => "colombo@example.es", :name => "Pedro Martinez", :password => "foobar", :password_confirmation => "foobar" }
+      end
+      
+      it "should redirect to homepage" do
+        post :create, :user => @attr
+        response.should redirect_to(root_path)
+      end
+      
+      it "should create a new user" do
+        lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1)
+      end
     end
     
   end

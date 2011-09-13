@@ -1,36 +1,35 @@
 <article class="c12 register-form">
-	<h1>Registarse</h1>
-	<%# TODO see client_side_validations gem to validate the form %>
-	<%= form_for @user, :class => 'row' do |f| %>
+	<h1><%= t '.title' %></h1>
+	<%= form_for @user, :validate => true, :class => 'row' do |f| %>
 		<ul>
 			<li class="row">
 				<div class="c6">
-					<%= f.label :nick, 'Nick:', :class => 'c2 fix-m-l' %>
+					<%= f.label :nick, :class => 'c2 fix-m-l' %>
 					<%= f.text_field :nick, :class => 'c3' %>
 				</div>
 				<div class="c6">
-					<%= f.label :email,'Email:', :class => 'c2 fix-m-l' %>
+					<%= f.label :email, :class => 'c2 fix-m-l' %>
 					<%= f.email_field :email, :class => 'c3' %>
 				</div>
 			</li>
 			<li class="row">
 				<div class="c6">
-					<%= f.label :name, 'Nombre:', :class => 'c2 fix-m-l' %>
+					<%= f.label :name, :class => 'c2 fix-m-l' %>
 					<%= f.text_field :name, :class => 'c3' %>
 				</div>
 				<div class="c6">
-					<%= f.label :password, 'Contraseña:', :class => 'c2 fix-m-l' %>
+					<%= f.label :password, :class => 'c2 fix-m-l' %>
 					<%= f.password_field :password, :class => 'c3' %>
 				</div>
 				
 			</li>
 			<li class="row">
 				<div class="c6">
-					<%= f.label :password_confirmation, 'Confirmar contraseña:', :class => 'c2 fix-m-l' %>
+					<%= f.label :password_confirmation, :class => 'c2 fix-m-l' %>
 					<%= f.password_field :password_confirmation, :class => 'c3' %>
 				</div>
 				<div class="c6">
-					<%= f.submit 'Crear usuario', :class => 'btn-grey-round' %>
+					<%= f.submit :class => 'btn-grey-round' %>
 				</div>
 			</li>
 		</ul>

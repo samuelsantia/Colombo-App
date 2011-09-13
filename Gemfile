@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 gem 'mysql2', '0.3.7'
 
+gem 'client_side_validations'
+
 group :development do
   gem 'rspec-rails', '2.6.1'
 end
