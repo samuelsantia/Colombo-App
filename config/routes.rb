@@ -1,11 +1,17 @@
 ColomboApp::Application.routes.draw do
   
-  resources :users, :only => [:create]
-  resources :sessions, :only => [:create]
+  # --------------------------------------------------------------------------------
+  # USUARIOS
+  # --------------------------------------------------------------------------------
+  resources :users, :only => [:create], :path => 'usuarios'
+  get 'registrarse', :to => 'users#new', :as => :register, :format => false
   
-  match '/registrarse', :to => 'users#new', :via => :get
-  match '/login', :to => 'sessions#new', :via => :get
-  match '/logout', :to => 'sessions#destroy', :via => :get
+  # --------------------------------------------------------------------------------
+  # SESSIONES
+  # --------------------------------------------------------------------------------
+  resources :sessions, :only => [:create], :path => 'sesiones'
+  get 'iniciar-sesion', :to => 'sessions#new', :as => :login, :format => false
+  get 'salir', :to => 'sessions#destroy', :as => :logout, :format => false
   
   root :to => 'pages#home', :via => :get
 end
