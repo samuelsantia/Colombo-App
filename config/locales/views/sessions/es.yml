@@ -1,0 +1,7 @@
+es:
+  sessions:
+    deny_access: "Por favor inicie sesión para ver esta página"
+    new:
+      title: "Iniciar sesión"
+    create:
+      error: "Combinación usuario/contraseña incorrectos"

@@ -46,6 +46,11 @@ describe User do
           User.new(@attr.merge(:nick => nick)).should be_valid
         end
       end
+      
+      it "should reject duplicate nicks" do
+        User.create!(@attr)
+        User.new(@attr.merge(:email => "other@email.es")).should_not be_valid
+      end
     end
     
     describe "name" do
@@ -78,6 +83,11 @@ describe User do
         valid_emails.each do |email|
           User.new(@attr.merge(:email => email)).should be_valid
         end
+      end
+      
+      it "should reject duplicate emails" do
+        User.create!(@attr)
+        User.new(@attr.merge(:nick => "othernick")).should_not be_valid
       end
     end
     

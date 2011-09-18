@@ -77,6 +77,11 @@ describe UsersController do
         response.should redirect_to(root_path)
       end
       
+      it "should have a flash success" do
+        post :create, :user => @attr
+        flash[:success].should == I18n.t("users.create.success")
+      end
+      
       it "should create a new user" do
         lambda do
           post :create, :user => @attr
@@ -164,6 +169,11 @@ describe UsersController do
         @user.nick.should == @attr[:nick]
         @user.email.should == @attr[:email]
         @user.name.should == @attr[:name]
+      end
+      
+      it "should have flash success" do
+        put :update, :id => @user.id, :user => @attr
+        flash[:success].should == I18n.t('users.my_account.success')
       end
       
       it "should redirect to my_account page" do

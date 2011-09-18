@@ -12,7 +12,7 @@ ColomboApp::Application.routes.draw do
   # --------------------------------------------------------------------------------
   resources :sessions, :only => [:create], :path => 'sesiones'
   get 'iniciar-sesion', :to => 'sessions#new', :as => :login, :format => false
-  get 'salir', :to => 'sessions#destroy', :as => :logout, :format => false
+  delete 'salir', :to => 'sessions#destroy', :as => :logout, :format => false
   
   root :to => 'pages#home', :via => :get
 end

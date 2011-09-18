@@ -30,8 +30,8 @@ Spork.prefork do
     config.use_transactional_fixtures = true
     
     # Helpers
-    def test_login(user)
-      controller.log_in(user)
+    def test_login(user, remember = 0)
+      controller.log_in(user, remember)
     end
   end
 end

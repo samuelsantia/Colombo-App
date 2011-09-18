@@ -12,6 +12,7 @@ module SessionsHelper
   
   def log_out
     clear_remember_token
+    self.current_user = nil
   end
   
   # current_user=
@@ -57,7 +58,7 @@ module SessionsHelper
   #
   def deny_access
     store_location
-    redirect_to login_path
+    redirect_to login_path, :notice => t("sessions.deny_access")
   end
   
   # redirect_back_or

@@ -12,7 +12,7 @@ describe SessionsController do
     
     it "should have the right title" do
       get 'new'
-      response.should have_selector('title', :content => 'Entrar')
+      response.should have_selector('title', :content => I18n.t('sessions.new.title'))
     end
   end
   
@@ -31,7 +31,12 @@ describe SessionsController do
       
       it "should have right title" do
         post :create, :session => @attr
-        response.should have_selector('title', :content => 'Iniciar sesion')
+        response.should have_selector('title', :content => I18n.t('sessions.new.title'))
+      end
+      
+      it "should have flash error" do
+        post :create, :session => @attr
+        flash[:error].should == I18n.t('sessions.create.error')
       end
     end
     
@@ -51,6 +56,12 @@ describe SessionsController do
       it "should redirect to the homepage" do
         post :create, :session => @attr
         response.should redirect_to(root_path)
+      end
+      
+      it "should login the user in" do
+        post :create, :session => @attr
+        controller.current_user.should == @user
+        controller.should be_loged_in
       end
       
       describe "with remember true" do
@@ -88,5 +99,43 @@ describe SessionsController do
       end
     end
   end
-
+  
+  describe "DELETE 'destroy'" do
+    
+    describe "with remember true" do
+      
+      before(:each) do
+        test_login(Factory(:user), 1)
+      end
+      
+      it "should logout the user" do
+        delete :destroy
+        controller.should_not be_loged_in
+        response.should redirect_to(root_path)
+      end
+      
+      it "should clear the remember token cookie" do
+        delete :destroy
+        cookies[:remember_token].should be_nil
+      end
+    end
+    
+    describe "with remember false" do
+      
+      before(:each) do
+        test_login(Factory(:user))
+      end
+      
+      it "should logout the user" do
+        delete :destroy
+        controller.should_not be_loged_in
+        response.should redirect_to(root_path)
+      end
+      
+      it "should clear the session storage" do
+        delete :destroy
+        session[:remember_token].should be_nil
+      end
+    end
+  end
 end

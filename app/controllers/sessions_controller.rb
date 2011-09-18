@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   # GET iniciar-sesion
   # render a login form
   def new
-    @title = "Entrar"
+    @title = t "sessions.new.title"
   end
   
   # POST sessions
@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:session][:identificator], params[:session][:password])
     if user.nil?
-      @title = "Iniciar sesion"
+      flash.now[:error] = t "sessions.create.error"
+      @title = t "sessions.new.title"
       render "new"
     else
       log_in user, params[:session][:remember_me].to_i

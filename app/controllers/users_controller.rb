@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      flash[:success] = t "users.create.success"
       redirect_to root_path
     else
       @title = 'Registrarse'
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
   # @params user
   def update
     if @user.update_attributes params[:user]
+      flash[:success] = t "users.my_account.success"
       redirect_to my_account_path
     else
       @title = t "users.my_account.title"

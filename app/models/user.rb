@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 6..40 },
-                       :format       => { :with => /^[a-zA-Z0-9_-]+$/, :message => 'only acepts alphanumeric characteres' },
-                       :unless       => Proc.new { |user| user.password.nil? }
+                       :format       => { :with => /^[a-zA-Z0-9_-]+$/ },
+                       :on           => :create
                
   # Callbacks        
   before_save :encrypt_password, :unless => Proc.new { |user| user.password.nil? }

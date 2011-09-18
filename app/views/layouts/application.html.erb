@@ -11,6 +11,9 @@
 				<%= render 'layouts/header' %>
 			</header>
 			<section class="main row">
+				<% flash.each do |key, value| %>
+					<%= content_tag(:article, value, :class => "flash #{key}") %>
+				<% end %>
 				<%= yield %>
 			</section>
 			<footer>

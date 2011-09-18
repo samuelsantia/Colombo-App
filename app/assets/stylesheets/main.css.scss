@@ -119,6 +119,16 @@ footer{
 }
 /* end footer */
 
+/* flash messages */
+.flash{
+  margin-bottom: 1.25em; border: 1px solid; padding: 10px;
+  
+  &.notice{border-color: #ffd324; background: #fff6bf; color: #514721;}
+  &.error{border-color: #a33; background: #caa; color: #633;}
+  &.success{border-color: #3a3; background: #aca; color: #161;}
+}
+/* end flash messages */
+
 /* forms  */
 input{
   &[type=text], &[type=password], &[type=email]{

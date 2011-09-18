@@ -2,5 +2,8 @@ es:
   users:
     new:
       title: "Registrarse"
+    create:
+      success: "Gracias por registrarte en Colombo"
     my_account:
       title: "Mi cuenta"
+      success: "Datos actualizados correctamente"
