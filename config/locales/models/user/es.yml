@@ -9,3 +9,13 @@ es:
         name:                  "Nombre"
         password:              "Contraseña"
         password_confirmation: "Confirmar contraseña"
+    errors:
+      models:
+        user:
+          attributes:
+            nick:
+              invalid: "Solo acepta caracteres alfanuméricos"
+            email:
+              invalid: "Debe ser un email"
+            password:
+              invalid: "Solo acepta caracteres alfanuméricos"

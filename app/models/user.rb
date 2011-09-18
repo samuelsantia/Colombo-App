@@ -21,20 +21,21 @@ class User < ActiveRecord::Base
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :nick,  :presence   => true,
                     :length     => { :within => 3..16 },
-                    :format     => { :with => /^[a-zA-Z0-9_-]+$/, :message => 'only acepts alphanumeric characters' },
+                    :format     => { :with => /^[a-zA-Z0-9_-]+$/ },
                     :uniqueness => { :case_sensitive => false }
   validates :name,  :presence => true
   validates :email, :presence   => true,
                     :length     => { :maximum => 50  },
-                    :format     => { :with => email_regex, :message => 'must be an email' },
+                    :format     => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 6..40 },
-                       :format       => { :with => /^[a-zA-Z0-9_-]+$/, :message => 'only acepts alphanumeric characteres' }
+                       :format       => { :with => /^[a-zA-Z0-9_-]+$/, :message => 'only acepts alphanumeric characteres' },
+                       :unless       => Proc.new { |user| user.password.nil? }
                
   # Callbacks        
-  before_save :encrypt_password
+  before_save :encrypt_password, :unless => Proc.new { |user| user.password.nil? }
   
   # ------------------------------------------------------------------------------------------------------
   # Class methods

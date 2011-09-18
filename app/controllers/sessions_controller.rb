@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   
-  # GET /login
+  # GET iniciar-sesion
   # render a login form
   def new
     @title = "Entrar"
@@ -19,11 +19,11 @@ class SessionsController < ApplicationController
       render "new"
     else
       log_in user, params[:session][:remember_me].to_i
-      redirect_to root_path
+      redirect_back_or
     end
   end
   
-  # DELETE /logout
+  # GET salir
   # log_out a user and redirect to the root_path
   def destroy
     log_out

@@ -12,7 +12,7 @@ describe UsersController do
     
     it "should have the right title" do
       get :new
-      response.should have_selector('title', :content => 'Registrarse')
+      response.should have_selector('title', :content => I18n.t('users.new.title'))
     end
     
     it "should have a nick field" do
@@ -83,7 +83,94 @@ describe UsersController do
         end.should change(User, :count).by(1)
       end
     end
+  end
+  
+  describe "GET 'my_account'" do
     
+    before(:each) do
+      @user = Factory(:user)
+      test_login(@user)
+    end
+    
+    it "should be succesful" do
+      get :my_account
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :my_account
+      response.should have_selector("title", :content => I18n.t('users.my_account.title'))
+    end
+    
+    it "should have a nick field" do
+      get :my_account
+      response.should have_selector("input[name='user[nick]'][type='text']")
+    end
+    
+    it "should have a email field" do
+      get :my_account
+      response.should have_selector("input[name='user[email]'][type='email']")
+    end
+    
+    it "should have a name field" do
+      get :my_account
+      response.should have_selector("input[name='user[name]'][type='text']")
+    end
+    
+    it "should not have a password field" do
+      get :my_account
+      response.should_not have_selector("input[name='user[password]'][type='password']")
+    end
+    
+    it "should not have a password confirmation field" do
+      get :my_account
+      response.should_not have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
+  end
+  
+  describe "PUT 'update'" do
+    
+    before(:each) do
+      @user = Factory(:user)
+      test_login(@user)
+    end
+    
+    describe "failure" do
+      
+      before(:each) do
+        @invalid_attr = { :name => "", :email => "", :nick => "" }
+      end
+      
+      it "should render 'my_account' page" do
+        put :update, :id => @user.id, :user => @invalid_attr
+        response.should render_template('my_account')
+      end
+      
+      it "should have the right title" do
+        put :update, :id => @user.id, :user => @invalid_attr
+        response.should have_selector("title", :content => I18n.t('users.my_account.title'))
+      end
+    end
+    
+    describe "success" do
+      
+      before(:each) do
+        @attr = { :nick => "newNick", :email => "newmail@mail.es", :name => "New Name" }
+      end
+      
+      it "should change the use's attributes" do
+        put :update, :id => @user.id, :user => @attr
+        @user.reload
+        @user.nick.should == @attr[:nick]
+        @user.email.should == @attr[:email]
+        @user.name.should == @attr[:name]
+      end
+      
+      it "should redirect to my_account page" do
+        put :update, :id => @user.id, :user => @attr
+        response.should redirect_to(my_account_path)
+      end
+    end
   end
 
 end

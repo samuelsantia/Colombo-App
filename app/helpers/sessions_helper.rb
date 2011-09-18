@@ -45,6 +45,30 @@ module SessionsHelper
     user == current_user
   end
   
+  # authenticate
+  # match if user is loged_in else redirect to login_path
+  #
+  def authenticate
+    deny_access unless loged_in?
+  end
+  
+  # deny_access
+  # store the location in a session and redirect to login_path
+  #
+  def deny_access
+    store_location
+    redirect_to login_path
+  end
+  
+  # redirect_back_or
+  # redirect to the store_location or a default url
+  # @param default => default url to redirect
+  #
+  def redirect_back_or(default = root_path)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+  
   private
     
     # set_remember_token
@@ -83,5 +107,19 @@ module SessionsHelper
     #
     def user_from_remember_token
       User.authenticate_with_salt(*remember_token)
+    end
+    
+    # store_location
+    # save the request path in a session
+    #
+    def store_location
+      session[:return_to] = request.fullpath
+    end
+    
+    # clear_return_to
+    # clear the return_to session
+    #
+    def clear_return_to
+      session[:return_to] = nil
     end
 end

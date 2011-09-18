@@ -1,4 +1,4 @@
-<article class="c12 register-form">
+<article class="c12 my-account-form">
 	<h1><%= t '.title' %></h1>
 	<%= form_for @user, :validate => true, :class => 'row' do |f| %>
 		<ul class="form-fields">
@@ -16,17 +16,6 @@
 				<div class="c6">
 					<%= f.label :name, :class => 'c2 fix-m-l' %>
 					<%= f.text_field :name, :class => 'c3' %>
-				</div>
-				<div class="c6">
-					<%= f.label :password, :class => 'c2 fix-m-l' %>
-					<%= f.password_field :password, :class => 'c3' %>
-				</div>
-				
-			</li>
-			<li class="row">
-				<div class="c6">
-					<%= f.label :password_confirmation, :class => 'c2 fix-m-l' %>
-					<%= f.password_field :password_confirmation, :class => 'c3' %>
 				</div>
 				<div class="c6">
 					<%= f.submit :class => 'btn-grey-round' %>

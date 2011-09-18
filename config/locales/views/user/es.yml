@@ -2,3 +2,5 @@ es:
   users:
     new:
       title: "Registrarse"
+    my_account:
+      title: "Mi cuenta"

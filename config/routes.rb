@@ -3,8 +3,9 @@ ColomboApp::Application.routes.draw do
   # --------------------------------------------------------------------------------
   # USUARIOS
   # --------------------------------------------------------------------------------
-  resources :users, :only => [:create], :path => 'usuarios'
+  resources :users, :only => [:create, :update], :path => 'usuarios'
   get 'registrarse', :to => 'users#new', :as => :register, :format => false
+  get 'mi-cuenta', :to => 'users#my_account', :as => :my_account, :format => false
   
   # --------------------------------------------------------------------------------
   # SESSIONES
