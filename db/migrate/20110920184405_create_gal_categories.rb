@@ -8,6 +8,7 @@ class CreateGalCategories < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :gal_categories, :name,       :unique => true
     add_index :gal_categories, :permalink,  :unique => true
   end
 end

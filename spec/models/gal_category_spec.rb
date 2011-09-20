@@ -1,12 +1,13 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe GalCategory do
   
   before(:each) do
     @attr = {
-      :name        => "category",
+      :name        => "Category Name",
       :description => "category description",
-      :permalink   => "category",
+      :permalink   => "category-permalink",
       :status      => 0
     }
   end
@@ -38,7 +39,7 @@ describe GalCategory do
     describe "permalink" do
       
       it "should require a permalink" do
-        GalCategory.new(@attr.merge(:permalink => "")).should_not be_valid
+        category = GalCategory.new(@attr.merge(:name => "",:permalink => "")).should_not be_valid
       end
       
       it "should reject long permalinks" do
@@ -68,6 +69,35 @@ describe GalCategory do
       it "should require an status" do
         GalCategory.new(@attr.merge(:status => "")).should_not be_valid
       end
+    end
+  end
+  
+  describe "status attribute" do
+    
+    it "should be 0 by default" do
+      @attr.delete(:status)
+      GalCategory.new(@attr).status.should == 0
+    end
+  end
+  
+  describe "set_permalink method" do
+    
+    it "should only call if permalink is blank" do
+      GalCategory.create!(@attr).permalink.should == @attr[:permalink]
+    end
+    
+    it "should create a permalink if self is blank" do
+      GalCategory.create!(@attr.merge(:permalink => "")).permalink.should == @attr[:name].parameterize
+    end
+    
+    it "should create a permalink if self is nil" do
+      @attr.delete(:permalink)
+      GalCategory.create!(@attr).permalink.should == @attr[:name].parameterize
+    end
+    
+    it "should change accents" do
+      @attr.delete(:permalink)
+      GalCategory.create!(@attr.merge(:name => 'áñí')).permalink.should == "ani"
     end
   end  
 end

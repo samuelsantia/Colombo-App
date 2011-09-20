@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20110920184405) do
     t.datetime "updated_at"
   end
 
+  add_index "gal_categories", ["name"], :name => "index_gal_categories_on_name", :unique => true
   add_index "gal_categories", ["permalink"], :name => "index_gal_categories_on_permalink", :unique => true
 
   create_table "users", :force => true do |t|

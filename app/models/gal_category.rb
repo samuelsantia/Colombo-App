@@ -17,13 +17,25 @@ class GalCategory < ActiveRecord::Base
   STATUS_PUBLISHED = 1
   
   # Validations
-  validates :name, :presence => true,
-                   :length   => { :maximum => 50 }
+  validates :name, :presence   => true,
+                   :length     => { :maximum => 50 },
+                   :uniqueness => { :case_sensitive => false }
   validates :description, :length => { :maximum => 255 }
-  validates :permalink, :presence => true,
+  validates :permalink, :presence     => true,
                         :length       => { :maximum => 50 },
                         :format       => { :with => /^[a-zA-Z0-9-]+$/ },
                         :uniqueness   => true
   validates :status, :presence => true
   
+  # Callbacks
+  before_validation :set_permalink, :if => Proc.new{ |category| category.permalink.blank? && !category.name.blank? }
+  
+  
+  private
+    # set_permalink
+    # gets the name and converts in a permalink
+    #
+    def set_permalink
+      self.permalink = self.name.parameterize
+    end
 end
