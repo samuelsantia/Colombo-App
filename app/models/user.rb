@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
   attr_accessible :nick, :name, :email, :password, :password_confirmation
   
   # Constants
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   # Validations
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :nick,  :presence   => true,
                     :length     => { :within => 3..16 },
                     :format     => { :with => /^[a-zA-Z0-9_-]+$/ },
