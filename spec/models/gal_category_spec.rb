@@ -80,6 +80,17 @@ describe GalCategory do
     end
   end
   
+  describe "relationships" do
+    
+    before :each do
+      @category = GalCategory.create(@attr)
+    end
+    
+    it "should respond to albums" do
+      @category.should respond_to(:gal_albums)
+    end
+  end
+  
   describe "set_permalink method" do
     
     it "should only call if permalink is blank" do
@@ -95,7 +106,7 @@ describe GalCategory do
       GalCategory.create!(@attr).permalink.should == @attr[:name].parameterize
     end
     
-    it "should change accents" do
+    it "should change special chars" do
       @attr.delete(:permalink)
       GalCategory.create!(@attr.merge(:name => 'áñí')).permalink.should == "ani"
     end

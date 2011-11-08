@@ -1,18 +1,19 @@
-# GalCategory model
+# GalAlbum model
 #
-# Table name: gal_categories
+# Table name: gal_albums
 # 
 # id                 :integer         not null, primary key
+# gal_category_id    :integer
 # name               :string(50)      not null
 # description        :string(255)
 # permalink          :string(50)      not null, index, unique
 # status             :integer         default 0
-# 
-class GalCategory < ActiveRecord::Base
+#
+class GalAlbum < ActiveRecord::Base
   # Attributes
-  attr_accessible :name, :description, :permalink, :status
+  attr_accessible :gal_category_id, :name, :description, :permalink, :status
   
-  # Constats
+  # Constants
   STATUS_INACTIVE  = 0
   STATUS_PUBLISHED = 1
   
@@ -28,11 +29,10 @@ class GalCategory < ActiveRecord::Base
   validates :status, :presence => true
   
   # Relationships
-  has_many :gal_albums
+  belongs_to :gal_category
   
   # Callbacks
   before_validation :set_permalink, :if => Proc.new{ |category| category.permalink.blank? && !category.name.blank? }
-  
   
   private
     # set_permalink

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920184405) do
+ActiveRecord::Schema.define(:version => 20111107201308) do
+
+  create_table "gal_albums", :force => true do |t|
+    t.integer  "gal_category_id"
+    t.string   "name",            :limit => 50,                :null => false
+    t.string   "description"
+    t.string   "permalink",       :limit => 50,                :null => false
+    t.integer  "status",                        :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gal_albums", ["name"], :name => "index_gal_albums_on_name", :unique => true
+  add_index "gal_albums", ["permalink"], :name => "index_gal_albums_on_permalink", :unique => true
 
   create_table "gal_categories", :force => true do |t|
     t.string   "name",        :limit => 50,                :null => false

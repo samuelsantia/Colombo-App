@@ -9,7 +9,6 @@
 # encrypted_password :string(255)
 # salt               :string(255)
 #
-require 'digest'
 class User < ActiveRecord::Base
   # Attributes
   attr_accessor :password
