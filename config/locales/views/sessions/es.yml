@@ -1,6 +1,11 @@
 es:
   sessions:
     deny_access: "Por favor inicie sesión para ver esta página"
+    close: "Cerrar sesión"
+    labels:
+        identificator: "Nombre de usuario o contraseña"
+        password: "Contraseña"
+        remember: "Recordarme"
     new:
       title: "Iniciar sesión"
     create:

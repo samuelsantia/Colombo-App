@@ -1,5 +1,7 @@
 es:
   users:
+    not_account: "¿No tienes cuenta aún?"
+    forgot_password: "¿Olvido su contraseña?"
     new:
       title: "Registrarse"
     create:

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       flash[:success] = t "users.create.success"
       redirect_to root_path
     else
-      @title = 'Registrarse'
+      @title = t 'users.new.title'
       render :action => 'new'
     end
   end

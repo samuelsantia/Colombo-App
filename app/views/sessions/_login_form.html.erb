@@ -1,14 +1,14 @@
 <%= form_for(:session, :url => sessions_path) do |f| %>
-	<%= f.label :identificator, "Nombre de usuario o contraseña" %>
+	<%= f.label :identificator, t('sessions.labels.identificator') %>
  	<%= f.text_field :identificator %>
-	<%= f.label :password, "Contraseña" %>
+	<%= f.label :password, t('sessions.labels.password') %>
 	<%= f.password_field :password %>
 	<%= f.check_box :remember_me %>
-	<%= f.label :remember_me, "Recordarme", :class => 'remember' %>
-	<%= f.submit "Iniciar sesión", :class => 'btn-grey-round' %>
+	<%= f.label :remember_me, t('sessions.labels.remember'), :class => 'remember' %>
+	<%= f.submit t('sessions.new.title'), :class => 'btn-grey-round' %>
 <% end %>
 
 <ul>
-	<li><%= link_to "¿No tienes cuenta aún?", register_path, :title => "Regisgtrate" %></li>
-	<li><%= link_to "¿Olvido su contraseña?", "#", :title => "¿Olvido su contraseña?" %></li>
+	<li><%= link_to t('users.not_account'), register_path, :title => t('users.new.title') %></li>
+	<li><%= link_to t('users.forgot_password'), "#", :title => t('users.forgot_password') %></li>
 </ul>
